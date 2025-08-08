@@ -19,7 +19,7 @@ namespace Control_de_inventario
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -31,5 +31,12 @@ namespace Control_de_inventario
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Corroborando evento");
+
+        }
+
     }
 }

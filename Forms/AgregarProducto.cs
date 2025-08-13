@@ -1,24 +1,20 @@
-﻿using Control_de_inventario.Class_funcion;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Control_de_inventario.Forms
+namespace Control_de_inventario
 {
-    public partial class Inventario : Form
+    public partial class AgregarProducto : Form
     {
-        public Inventario()
+        public AgregarProducto()
         {
             InitializeComponent();
         }
-        
-
     }
 }

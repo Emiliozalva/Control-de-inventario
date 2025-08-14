@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label6.Text" xml:space="preserve">
+    <value>•Para agregar existencias/s de un producto
+completar el campo Id con un ID existente, 
+y una cantidad. 
+•Para agregar un producto nuevo a la BD 
+agregar un ID NO existente, y completar 
+los campos obligatorios. 
+</value>
+  </data>
 </root>

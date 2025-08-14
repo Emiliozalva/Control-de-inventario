@@ -18,7 +18,7 @@ namespace Control_de_inventario.Class_funcion
         public Prestamo(string area, string ne)
         {
             _area = area;
-            _nameEmpleado = ne;
+            _nameEmpleado = ne;                 ///Constructor para cunado se crea un prestamo.
             _date1 = DateTime.Now;
             _date2 = null;
             _desc = "";

@@ -1,4 +1,5 @@
-﻿using Control_de_inventario.Forms;
+﻿using Control_de_inventario.Class_funcion;
+using Control_de_inventario.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,10 @@ namespace Control_de_inventario
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Inventario());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Inventario());
+            Helper.formatoFecha(DateTime.Now);
         }
     }
 }

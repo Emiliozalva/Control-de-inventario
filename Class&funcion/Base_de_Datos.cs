@@ -33,13 +33,21 @@ namespace Control_de_inventario.Class_funcion
                     {
                         var p = new Producto(
                             Convert.ToInt32(reader["IDProducto"]),
-                            reader["producto"].ToString()
+                            reader["producto"] != DBNull.Value ? reader["producto"].ToString() : ""
                         );
 
-                        p.setMod(reader["modelo"].ToString());
-                        p.setBrand(reader["marca"].ToString());
-                        p.setStock(Convert.ToInt32(reader["cantidadStock"]));
-                        p.setAol(Convert.ToInt32(reader["cantPrestada"]));
+                        p.setMod(reader["modelo"] != DBNull.Value ? reader["modelo"].ToString() : "");
+                        p.setBrand(reader["marca"] != DBNull.Value ? reader["marca"].ToString() : "");
+
+                        int stock = 0;
+                        if (reader["cantidadStock"] != DBNull.Value)
+                            int.TryParse(reader["cantidadStock"].ToString(), out stock);
+                        p.setStockDirecto(stock); 
+
+                        int aol = 0;
+                        if (reader["cantPrestada"] != DBNull.Value)
+                            int.TryParse(reader["cantPrestada"].ToString(), out aol);
+                        p.setAolDirecto(aol); 
 
                         lista.Add(p);
                     }
@@ -56,35 +64,21 @@ namespace Control_de_inventario.Class_funcion
             using (var conexion = new SQLiteConnection(_conexion))
             {
                 conexion.Open();
-                string query = "SELECT area, persona, fecha1, fecha2, description, estado FROM prestamos";
+                string query = "SELECT idProducto, area, persona, fecha1, fecha2, description, estado FROM prestamos";
                 using (var cmd = new SQLiteCommand(query, conexion))
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var prestamo = new Prestamo(
-                            reader["area"].ToString(),
-                            reader["persona"].ToString()
-                        );
+                        int idProd = Convert.ToInt32(reader["idProducto"]);
+                        string area = reader["area"].ToString();
+                        string persona = reader["persona"].ToString();
+                        int fecha1 = Convert.ToInt32(reader["fecha1"]);
+                        int fecha2 = reader["fecha2"] != DBNull.Value ? Convert.ToInt32(reader["fecha2"]) : 0;
+                        string desc = reader["description"].ToString();
+                        bool estado = Convert.ToInt32(reader["estado"]) == 1;
 
-                        // Fecha 1
-                        DateTime fecha1;
-                        if (DateTime.TryParse(reader["fecha1"].ToString(), out fecha1))
-                        {
-                            //// AJUSTA LA FECHA EN EL CONSTRUCTUOR PORQUE SINO VAS A ROMPER TODO!!!!!!!
-                        }
-
-                        // Fecha 2 (nullable)
-                        DateTime fecha2;
-                        if (DateTime.TryParse(reader["fecha2"].ToString(), out fecha2))
-                        {
-                            //// AJUSTA LA FECHA EN EL CONSTRUCTUOR PORQUE SINO VAS A ROMPER TODO!!!!!!!
-                        }
-
-                        prestamo.setDesc(reader["description"].ToString());
-
-                        // Estado
-                        prestamo.setEstado(Convert.ToInt32(reader["estado"]) == 1);
+                        var prestamo = new Prestamo(idProd, area, persona, fecha1, fecha2, desc, estado);
 
                         lista.Add(prestamo);
                     }
@@ -141,20 +135,15 @@ namespace Control_de_inventario.Class_funcion
                                  fecha2 = @fecha2, 
                                  description = @description, 
                                  estado = @estado
-                             WHERE area = @area AND persona = @persona AND fecha1 = @fecha1";
+                             WHERE idProducto = @idProducto";
 
                     using (var cmd = new SQLiteCommand(query, conexion))
                     {
+                        cmd.Parameters.AddWithValue("@idProducto", pr.getIdProducto());
                         cmd.Parameters.AddWithValue("@area", pr.getArea());
                         cmd.Parameters.AddWithValue("@persona", pr.getNameEm());
                         cmd.Parameters.AddWithValue("@fecha1", pr.getDate1());
-
-                        // En C# 7.3 sin nullables modernos
-                        if (pr.getDate2().HasValue)
-                            cmd.Parameters.AddWithValue("@fecha2", pr.getDate2().Value);
-                        else
-                            cmd.Parameters.AddWithValue("@fecha2", DBNull.Value);
-
+                        cmd.Parameters.AddWithValue("@fecha2", pr.getDate2() != 0 ? pr.getDate2() : (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@description", pr.getDesc());
                         cmd.Parameters.AddWithValue("@estado", pr.getEstado() ? 1 : 0);
 

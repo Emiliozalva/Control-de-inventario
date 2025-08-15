@@ -16,10 +16,13 @@ namespace Control_de_inventario
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Inventario());
-            Helper.formatoFecha(DateTime.Now);
+            /// Application.EnableVisualStyles();
+            /// Application.SetCompatibleTextRenderingDefault(false);
+            /// Application.Run(new Inventario());
+            Console.WriteLine(Helper.fromDtToInt(DateTime.Now));
+            int n = Helper.fromDtToInt(DateTime.Now);
+            Console.WriteLine(Helper.fromIntToDtString(n));
+
         }
     }
 }

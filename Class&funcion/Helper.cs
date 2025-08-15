@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,16 +9,38 @@ namespace Control_de_inventario.Class_funcion
 {
     internal class Helper
     {
-        public static void formatoFecha(DateTime ock)
+        public static int fromDtToInt(DateTime ock)
         {
-            DateTime fecha = ock;
-            int aux = int.Parse(fecha.ToString ());                 ///CORREGIR ESTO, PASAR EN FORMATO FECHA 
-            string fechaFormateada = fecha.ToString("yyyyMMdd");
-            int fechaNumerica = int.Parse(fechaFormateada);
-            Console.WriteLine($"Pasada directo a entero: {aux}"); 
-            Console.WriteLine($"Fecha: {fecha}");
-            Console.WriteLine($"Fecha formateada: {fechaFormateada}");
-            Console.WriteLine($"Fecha numérica: {fechaNumerica}");
+            return (ock.Year * 1000 + ock.Month * 100 + ock.Day);
         }
+        public static string fromIntToDtString(int n)
+        {
+            string fechaStr = n.ToString();
+            string anio = fechaStr.Substring(0, 4);
+            string resto = fechaStr.Substring(4);
+            int mes, dia;
+
+            if (resto.Length <= 2)
+            {
+                mes = int.Parse(resto);
+                dia = 1;
+            }
+            else
+            {
+                if (resto.Length == 3)
+                {
+                    mes = int.Parse(resto.Substring(0, 1));
+                    dia = int.Parse(resto.Substring(1, 2));
+                }
+                else
+                {
+                    mes = int.Parse(resto.Substring(0, 2));
+                    dia = int.Parse(resto.Substring(2));
+                }
+            }
+            return $"{anio}/{mes:D2}/{dia:D2}";
+
+        }
+        
     }
 }

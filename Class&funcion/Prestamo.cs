@@ -8,6 +8,7 @@ namespace Control_de_inventario.Class_funcion
 {
     internal class Prestamo
     {/// parte privada: 
+        private int _idProducto;
         private string _area;
         private string _nameEmpleado; 
         private DateTime _date1;
@@ -15,8 +16,9 @@ namespace Control_de_inventario.Class_funcion
         private string _desc;
         private bool _estado; 
         /// constructor: 
-        public Prestamo(string area, string ne)
-        {
+        public Prestamo(int id,string area, string ne)
+        {   
+            _idProducto = id; /// Agregar los metodos del id y hacerlo simepre coincidir ocn el id de lprodcuto 
             _area = area;
             _nameEmpleado = ne;                 ///Constructor para cunado se crea un prestamo.
             _date1 = DateTime.Now;

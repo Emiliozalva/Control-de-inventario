@@ -41,6 +41,19 @@ namespace Control_de_inventario.Class_funcion
             return $"{anio}/{mes:D2}/{dia:D2}";
 
         }
-        
+
+        public static void addPrestamos(List<Producto> pd, List<Prestamo> pr)
+        {
+            for (int i = 0; i < pd.Count; i++)
+            {
+                for (int j = 0; j < pr.Count; j++)
+                {
+                    if (pr[j].getIdProducto() == pd[i].getId())
+                    {
+                        pd[i].cargarPrestamo(pr[j]);
+                    }
+                }
+            }
+        }
     }
 }

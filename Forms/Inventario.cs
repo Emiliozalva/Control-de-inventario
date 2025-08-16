@@ -18,7 +18,39 @@ namespace Control_de_inventario.Forms
         {
             InitializeComponent();
         }
-        
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Inventario_Load(object sender, EventArgs e)
+        {
+            Base_de_Datos bd = new Base_de_Datos();
+            List<Producto> _productos = bd.ObtenerProductos();
+            var data = _productos.Select(p => new
+            {
+                ID = p.getId(),
+                Nombre = p.getName(),
+                Marca = p.getBrand(),
+                Modelo = p.getMod(),
+                Stock = p.getStock(),
+                Prestados = p.getAol()
+            }).ToList();
+
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = data;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AgregarProducto ap = new AgregarProducto();
+            ap.Show();
+        }
     }
 }

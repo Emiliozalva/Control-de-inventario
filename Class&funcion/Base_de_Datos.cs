@@ -51,7 +51,7 @@ namespace Control_de_inventario.Class_funcion
 
                         lista.Add(p);
                     }
-                }
+                }conexion.Close();
             }
 
             return lista;
@@ -83,7 +83,9 @@ namespace Control_de_inventario.Class_funcion
                         lista.Add(prestamo);
                     }
                 }
+                conexion.Close();
             }
+            
 
             return lista;
         }
@@ -117,6 +119,7 @@ namespace Control_de_inventario.Class_funcion
                         cmd.ExecuteNonQuery();
                     }
                 }
+                conexion.Close();
             }
         }
 
@@ -150,6 +153,33 @@ namespace Control_de_inventario.Class_funcion
                         cmd.ExecuteNonQuery();
                     }
                 }
+                conexion.Close();
+            }
+        }
+        public void InsertarProducto(Producto p)
+        {
+            using (var conexion = new SQLiteConnection(_conexion))
+            {
+                conexion.Open();
+
+                string query = @"INSERT INTO stock (producto, modelo, marca, cantidadStock, IDproducto, cantPrestada)
+                         VALUES (@producto, @modelo, @marca, @stock, @ID, @aol)";
+
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@producto", p.getName());
+                    cmd.Parameters.AddWithValue("@modelo", p.getMod());
+                    cmd.Parameters.AddWithValue("@marca", p.getBrand());
+                    cmd.Parameters.AddWithValue("@stock", p.getStock());
+                    cmd.Parameters.AddWithValue("@aol", p.getAol());
+                    cmd.Parameters.AddWithValue("@ID", p.getId());
+
+                            // AGREGAR LOS METODOS PARA ACTUALIZAR DIRECTAMENTE LA BASE DE DATOS    
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                conexion.Close();
             }
         }
     }

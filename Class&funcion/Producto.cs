@@ -19,6 +19,7 @@ namespace Control_de_inventario.Class_funcion
         // constructor: 
         public Producto(int id, string name)
         {
+            if (id < 0) { id = id * (-1); }
             _id = id;
             _namePr = name;
             _mod = "";
@@ -28,7 +29,8 @@ namespace Control_de_inventario.Class_funcion
             _aol = 0;
         }
         public Producto(int id, string n, string mod,  string brand, int stock, int aol)
-        {                                                       /// por las dudads (posiblemente no lo use);;;
+        {
+            if (id < 0) { id = id * (-1); }                       /// por las dudads (posiblemente no lo use);;;
             _id = id;
             _namePr = n;
             _mod = mod;

@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class&amp;funcion\productManager.cs" />
     <Compile Include="Forms\AgregarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,12 @@
     </Compile>
     <Compile Include="Forms\EliminarProducto.Designer.cs">
       <DependentUpon>EliminarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GenerarOrden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GenerarOrden.Designer.cs">
+      <DependentUpon>GenerarOrden.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GestionDePrestamos.cs">
       <SubType>Form</SubType>
@@ -99,6 +106,18 @@
     <Compile Include="Forms\ModificarProdurcto.Designer.cs">
       <DependentUpon>ModificarProdurcto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RegistrarDevolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrarDevolucion.Designer.cs">
+      <DependentUpon>RegistrarDevolucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrarPrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrarPrestamo.Designer.cs">
+      <DependentUpon>RegistrarPrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AgregarProducto.resx">
@@ -106,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EliminarProducto.resx">
       <DependentUpon>EliminarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenerarOrden.resx">
+      <DependentUpon>GenerarOrden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GestionDePrestamos.resx">
       <DependentUpon>GestionDePrestamos.cs</DependentUpon>
@@ -115,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModificarProdurcto.resx">
       <DependentUpon>ModificarProdurcto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RegistrarDevolucion.resx">
+      <DependentUpon>RegistrarDevolucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RegistrarPrestamo.resx">
+      <DependentUpon>RegistrarPrestamo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

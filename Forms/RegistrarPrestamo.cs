@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Control_de_inventario.Forms
 {
-    public partial class ModificarProdurcto : Form
+    public partial class RegistrarPrestamo : Form
     {
-        public ModificarProdurcto()
+        public RegistrarPrestamo()
         {
             InitializeComponent();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

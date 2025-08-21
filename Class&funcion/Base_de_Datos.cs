@@ -156,31 +156,116 @@ namespace Control_de_inventario.Class_funcion
                 conexion.Close();
             }
         }
+        // ✅ PRODUCTOS
         public void InsertarProducto(Producto p)
         {
-            using (var conexion = new SQLiteConnection(_conexion))
+            using (var conexion = AbrirConexion())
             {
-                conexion.Open();
-
                 string query = @"INSERT INTO stock (producto, modelo, marca, cantidadStock, IDproducto, cantPrestada)
-                         VALUES (@producto, @modelo, @marca, @stock, @ID, @aol)";
-
+                             VALUES (@producto, @modelo, @marca, @stock, @ID, @aol)";
                 using (var cmd = new SQLiteCommand(query, conexion))
                 {
-                    cmd.Parameters.AddWithValue("@producto", p.getName());
-                    cmd.Parameters.AddWithValue("@modelo", p.getMod());
-                    cmd.Parameters.AddWithValue("@marca", p.getBrand());
+                    cmd.Parameters.AddWithValue("@producto", p.getName() ?? "");
+                    cmd.Parameters.AddWithValue("@modelo", p.getMod() ?? "");
+                    cmd.Parameters.AddWithValue("@marca", p.getBrand() ?? "");
                     cmd.Parameters.AddWithValue("@stock", p.getStock());
                     cmd.Parameters.AddWithValue("@aol", p.getAol());
                     cmd.Parameters.AddWithValue("@ID", p.getId());
-
-                            // AGREGAR LOS METODOS PARA ACTUALIZAR DIRECTAMENTE LA BASE DE DATOS    
-
                     cmd.ExecuteNonQuery();
                 }
+            }
+        }
 
-                conexion.Close();
+        public void ActualizarProducto(Producto p)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                string query = @"UPDATE stock 
+                             SET producto = @producto, modelo = @modelo, marca = @marca, 
+                                 cantidadStock = @stock, cantPrestada = @aol
+                             WHERE IDproducto = @ID";
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@producto", p.getName() ?? "");
+                    cmd.Parameters.AddWithValue("@modelo", p.getMod() ?? "");
+                    cmd.Parameters.AddWithValue("@marca", p.getBrand() ?? "");
+                    cmd.Parameters.AddWithValue("@stock", p.getStock());
+                    cmd.Parameters.AddWithValue("@aol", p.getAol());
+                    cmd.Parameters.AddWithValue("@ID", p.getId());
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarProducto(int idProducto)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                string query = "DELETE FROM stock WHERE IDproducto = @ID";
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@ID", idProducto);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // ✅ PRESTAMOS
+        public void InsertarPrestamo(Prestamo pr)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                string query = @"INSERT INTO prestamos (area, persona, fecha1, fecha2, description, estado, idProducto)
+                             VALUES (@area, @persona, @fecha1, @fecha2, @description, @estado, @idProducto)";
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@area", pr.getArea());
+                    cmd.Parameters.AddWithValue("@persona", pr.getNameEm());
+                    cmd.Parameters.AddWithValue("@fecha1", pr.getDate1());
+                    cmd.Parameters.AddWithValue("@fecha2", pr.getDate2() != 0 ? pr.getDate2() : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@description", pr.getDesc());
+                    cmd.Parameters.AddWithValue("@estado", pr.getEstado() ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@idProducto", pr.getIdProducto());
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ActualizarPrestamo(Prestamo pr)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                string query = @"UPDATE prestamos 
+                             SET persona = @persona, fecha1 = @fecha1, fecha2 = @fecha2, 
+                                 description = @description, estado = @estado
+                             WHERE idProducto = @idProducto AND area = @area";
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@area", pr.getArea());
+                    cmd.Parameters.AddWithValue("@persona", pr.getNameEm());
+                    cmd.Parameters.AddWithValue("@fecha1", pr.getDate1());
+                    cmd.Parameters.AddWithValue("@fecha2", pr.getDate2() != 0 ? pr.getDate2() : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@description", pr.getDesc());
+                    cmd.Parameters.AddWithValue("@estado", pr.getEstado() ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@idProducto", pr.getIdProducto());
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarPrestamo(int idProducto, string area)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                string query = "DELETE FROM prestamos WHERE idProducto = @idProducto AND area = @area";
+                using (var cmd = new SQLiteCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                    cmd.Parameters.AddWithValue("@area", area);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }
 }
+

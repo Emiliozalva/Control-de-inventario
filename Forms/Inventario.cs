@@ -21,7 +21,7 @@ namespace Control_de_inventario.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void Inventario_Load(object sender, EventArgs e)
@@ -51,6 +51,17 @@ namespace Control_de_inventario.Forms
         {
             AgregarProducto ap = new AgregarProducto();
             ap.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Inventario_Load(sender, e);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EliminarProducto ep = new EliminarProducto();
+            ep.Show();
         }
     }
 }

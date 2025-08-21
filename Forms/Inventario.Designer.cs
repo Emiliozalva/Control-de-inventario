@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -70,6 +70,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 266;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // button8
+            // 
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.Location = new System.Drawing.Point(12, 297);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(239, 37);
+            this.button8.TabIndex = 8;
+            this.button8.Text = "Generar orden de pedido.";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
@@ -133,6 +143,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Actualizar inventario.";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -143,6 +154,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Eliminar producto.";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -163,16 +175,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(524, 444);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // button8
-            // 
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.Location = new System.Drawing.Point(12, 297);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(239, 37);
-            this.button8.TabIndex = 8;
-            this.button8.Text = "Generar orden de pedido.";
-            this.button8.UseVisualStyleBackColor = true;
             // 
             // Inventario
             // 

@@ -156,7 +156,7 @@ namespace Control_de_inventario.Class_funcion
                 conexion.Close();
             }
         }
-        // ✅ PRODUCTOS
+        ///METODOS PARA EL MANEJO DE LOS PRODUCTOS
         public void InsertarProducto(Producto p)
         {
             using (var conexion = AbrirConexion())
@@ -209,8 +209,23 @@ namespace Control_de_inventario.Class_funcion
                 }
             }
         }
+        public void AgregarStockProducto(int id, int cantidad)
+        {
+            using (var conexion = AbrirConexion())
+            {
+                
+                string query = "UPDATE stock SET cantidadStock = cantidadStock + @cantidad WHERE IDproducto = @id;";
 
-        // ✅ PRESTAMOS
+                using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@cantidad", cantidad);
+                    comando.Parameters.AddWithValue("@id", id);
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
+
+        ///METODOS PAR EL MANEJO DE LOS PRESTAMOS
         public void InsertarPrestamo(Prestamo pr)
         {
             using (var conexion = AbrirConexion())

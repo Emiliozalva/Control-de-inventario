@@ -104,6 +104,7 @@
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Eliminar existencia.";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -159,6 +160,7 @@
             this.button3.TabIndex = 13;
             this.button3.Text = "Cancelar";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
             // 

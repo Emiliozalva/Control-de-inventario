@@ -45,39 +45,39 @@ namespace Control_de_inventario
             string marca = textBox3.Text;
             string modelo = textBox4.Text;
             string cantidad = textBox5.Text;
+            
             int _id, _cant;
             Base_de_Datos bd = new Base_de_Datos();
             List<Producto> lista = bd.ObtenerProductos();
-
-            if (int.TryParse(id, out _id))
-            {                //Checkear que el id sea un entero valido 
-                for (int i = 0; i < lista.Count(); i++)
+            if(int.TryParse(id, out _id) && int.TryParse(cantidad, out _cant))
+            {
+                if (Helper.existeProducto(lista, _id))
                 {
-                    if (lista[i].getId() == _id)
-                    {
-                        if (int.TryParse(cantidad, out _cant)) //Checkear que la cantidad sea un entero
-                        {
-                            lista[i].setStock(_cant);
-                            break;
-                        }
-                        else { MessageBox.Show("Ingrese una cantidad valida"); } // * mensaje de advertencia en caso de que no sea un integer 
-                    }
+                    bd.AgregarStockProducto(_id, _cant);
+                    this.Close();
+                    MessageBox.Show("Se actualizo el stock correctamente.");
                 }
-                if (int.TryParse(cantidad, out _cant))
-                {
-                    Producto pr = new Producto(_id, nombre, modelo, marca, _cant, 0);
-                    bd.InsertarProducto(pr);
-                }                                                           //Si todo se cumple se decide si se agrega el producto con o sin marca, modelo y cantidad
                 else
                 {
-                    Producto pr = new Producto(_id, nombre);
-                    bd.InsertarProducto(pr);
+                    if (!string.IsNullOrEmpty(textBox2.Text))
+                    {
+                        if(!(string.IsNullOrEmpty(textBox3.Text) && string.IsNullOrEmpty(textBox4.Text)))
+                        {
+                            bd.InsertarProducto(new Producto(_id, nombre, modelo, marca, _cant,0));
+                            this.Close();
+                            MessageBox.Show("Se agrego correctamente el nuevo producto.");
+                        }
+                        else { bd.InsertarProducto(new Producto(_id, nombre));
+                            this.Close();
+                            MessageBox.Show("Se agrego correctamente el nuevo producto sin marca ni modelo, y stock 0.");
+                        }
 
-
+                    }
+                    else { MessageBox.Show("Ingrese un nombre al nuevo producto."); }
                 }
-            }
-            else { MessageBox.Show("Ingrese un id valido"); }
-            this.Close();
+            }else 
+            { MessageBox.Show("Verificar que sean validos los valores de ID y cantidad. "); }
+            
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)

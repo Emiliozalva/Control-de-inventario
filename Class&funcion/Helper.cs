@@ -55,5 +55,21 @@ namespace Control_de_inventario.Class_funcion
                 }
             }
         }
+        public static bool existeProducto(List<Producto> lista, int id)
+        {
+            foreach (Producto p in lista)
+            {
+                if (p.getId() == id) {  return true; }
+            }
+            return false;
+        }
+        public static bool existePrestamo(List<Prestamo> lista, int id)
+        {
+            foreach (Prestamo p in lista)
+            {
+                if (p.getIdProducto() == id) { return true; }
+            }
+            return false;
+        }
     }
 }

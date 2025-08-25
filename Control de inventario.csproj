@@ -66,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class&amp;funcion\productManager.cs" />
+    <Compile Include="Forms\AdministarPrestamos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdministarPrestamos.Designer.cs">
+      <DependentUpon>AdministarPrestamos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AgregarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,23 +94,17 @@
     <Compile Include="Forms\GenerarOrden.Designer.cs">
       <DependentUpon>GenerarOrden.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GestionDePrestamos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\GestionDePrestamos.Designer.cs">
-      <DependentUpon>GestionDePrestamos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Inventario.Designer.cs">
       <DependentUpon>Inventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ModificarProdurcto.cs">
+    <Compile Include="Forms\ModificarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ModificarProdurcto.Designer.cs">
-      <DependentUpon>ModificarProdurcto.cs</DependentUpon>
+    <Compile Include="Forms\ModificarProducto.Designer.cs">
+      <DependentUpon>ModificarProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RegistrarDevolucion.cs">
       <SubType>Form</SubType>
@@ -120,6 +120,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AdministarPrestamos.resx">
+      <DependentUpon>AdministarPrestamos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AgregarProducto.resx">
       <DependentUpon>AgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,14 +132,11 @@
     <EmbeddedResource Include="Forms\GenerarOrden.resx">
       <DependentUpon>GenerarOrden.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GestionDePrestamos.resx">
-      <DependentUpon>GestionDePrestamos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ModificarProdurcto.resx">
-      <DependentUpon>ModificarProdurcto.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ModificarProducto.resx">
+      <DependentUpon>ModificarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegistrarDevolucion.resx">
       <DependentUpon>RegistrarDevolucion.cs</DependentUpon>

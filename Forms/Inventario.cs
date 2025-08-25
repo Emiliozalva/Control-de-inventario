@@ -63,5 +63,26 @@ namespace Control_de_inventario.Forms
             EliminarProducto ep = new EliminarProducto();
             ep.Show();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ModificarProducto mp = new ModificarProducto();
+            mp.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AdministarPrestamos ap = new AdministarPrestamos();
+            
+            this.Hide();
+            ap.ShowDialog();
+            this.Show();
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

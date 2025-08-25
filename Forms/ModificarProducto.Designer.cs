@@ -1,6 +1,6 @@
 ﻿namespace Control_de_inventario.Forms
 {
-    partial class ModificarProdurcto
+    partial class ModificarProducto
     {
         /// <summary>
         /// Required designer variable.
@@ -47,6 +47,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(143, 20);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -54,6 +55,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(143, 20);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // textBox3
             // 
@@ -61,6 +63,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(143, 20);
             this.textBox3.TabIndex = 2;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
@@ -68,6 +71,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(143, 20);
             this.textBox4.TabIndex = 3;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label1
             // 
@@ -129,6 +133,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "Modificar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -138,8 +143,9 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ModificarProdurcto
+            // ModificarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -155,7 +161,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Name = "ModificarProdurcto";
+            this.Name = "ModificarProducto";
             this.Text = "ModificarProdurcto";
             this.ResumeLayout(false);
             this.PerformLayout();

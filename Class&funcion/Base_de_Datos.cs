@@ -224,6 +224,22 @@ namespace Control_de_inventario.Class_funcion
                 }
             }
         }
+        public void AgregarPrestamoProducto(int id,int cantidad)
+        {
+            
+            using (var conexion = AbrirConexion())
+            {
+
+                string query = "UPDATE stock SET cantPrestada = cantPrestada + @cantidad WHERE IDproducto = @id;";
+
+                using (SQLiteCommand comando = new SQLiteCommand(query, conexion))
+                {
+                    comando.Parameters.AddWithValue("@cantidad", cantidad);
+                    comando.Parameters.AddWithValue("@id", id);
+                    comando.ExecuteNonQuery();
+                }
+            }
+        }
 
         ///METODOS PAR EL MANEJO DE LOS PRESTAMOS
         public void InsertarPrestamo(Prestamo pr)

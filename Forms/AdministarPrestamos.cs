@@ -59,5 +59,10 @@ namespace Control_de_inventario.Forms
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = data;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.AdministarPrestamos_Load(sender, e);
+        }
     }
 }

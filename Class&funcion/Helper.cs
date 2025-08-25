@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,19 @@ namespace Control_de_inventario.Class_funcion
                 }
             }
         }
+        public static Producto buscarProducto(int id)
+        {
+            Base_de_Datos bd = new Base_de_Datos();
+            List<Producto> pd = bd.ObtenerProductos();
+            foreach (Producto p in pd)
+            { 
+                if(p.getId() == id)
+                {
+                    return p;
+                }
+            } return null;
+        }                       ///Tener en cuenta que siempre voy a recorrer dos veces la lista
+                               ///  Resolver luego para que sea solo un recorrido                              
         public static bool existeProducto(List<Producto> lista, int id)
         {
             foreach (Producto p in lista)

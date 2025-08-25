@@ -84,5 +84,10 @@ namespace Control_de_inventario.Forms
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("No disponible actualmente.");
+        }
     }
 }

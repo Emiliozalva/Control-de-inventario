@@ -284,14 +284,15 @@ namespace Control_de_inventario.Class_funcion
             }
         }
 
-        public void EliminarPrestamo(int idProducto, string area)
+        public void EliminarPrestamo(int idProducto, string area, string persona)
         {
             using (var conexion = AbrirConexion())
             {
-                string query = "DELETE FROM prestamos WHERE idProducto = @idProducto AND area = @area";
+                string query = "DELETE FROM prestamos WHERE idProducto = @idProducto AND area = @area AND persona = @persona";
                 using (var cmd = new SQLiteCommand(query, conexion))
                 {
                     cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                    cmd.Parameters.AddWithValue("@persona", persona);
                     cmd.Parameters.AddWithValue("@area", area);
                     cmd.ExecuteNonQuery();
                 }

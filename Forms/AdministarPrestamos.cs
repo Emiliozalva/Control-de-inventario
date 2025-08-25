@@ -64,5 +64,11 @@ namespace Control_de_inventario.Forms
         {
             this.AdministarPrestamos_Load(sender, e);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RegistrarDevolucion rd = new RegistrarDevolucion();
+            rd.Show();
+        }
     }
 }

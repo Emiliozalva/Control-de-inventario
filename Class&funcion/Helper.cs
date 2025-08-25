@@ -77,11 +77,11 @@ namespace Control_de_inventario.Class_funcion
             }
             return false;
         }
-        public static bool existePrestamo(List<Prestamo> lista, int id)
+        public static bool existePrestamo(List<Prestamo> lista, int id,string area, string empleado)
         {
             foreach (Prestamo p in lista)
             {
-                if (p.getIdProducto() == id) { return true; }
+                if (p.getIdProducto() == id && p.getNameEm() == empleado && p.getArea() == area ) { return true; }
             }
             return false;
         }

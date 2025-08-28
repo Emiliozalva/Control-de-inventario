@@ -82,7 +82,8 @@ namespace Control_de_inventario.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            OrdenDePedido op = new OrdenDePedido();
+            op.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)

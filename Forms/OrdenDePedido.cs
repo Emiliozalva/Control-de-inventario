@@ -17,6 +17,7 @@ namespace Control_de_inventario.Forms
         public OrdenDePedido()
         {
             InitializeComponent();
+            lista = new List<(string, int)>();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,7 +27,7 @@ namespace Control_de_inventario.Forms
 
         private void OrdenDePedido_Load(object sender, EventArgs e)
         {
-            lista = new List<(string, int)>();
+            
             Base_de_Datos bd = new Base_de_Datos();
             List<Producto> productos = bd.ObtenerProductos();
             foreach (Producto p in productos)
@@ -53,7 +54,8 @@ namespace Control_de_inventario.Forms
                 bool a = false;
                 foreach ((string i, int j) in lista)
                 {
-                    if (i == p) { lista.Remove((p, j)); a = true; break; }
+                    if (i == p) { lista.Remove((p, j));
+                        a = true; break; }
 
                 }
                 if (!a) { MessageBox.Show("No se cargo el elemento."); }
@@ -62,10 +64,11 @@ namespace Control_de_inventario.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!(string.IsNullOrEmpty(comboBox1.Text)) && !(numericUpDown1.Value >0) )
+            if (!(string.IsNullOrEmpty(comboBox1.Text)) && (numericUpDown1.Value >0) )
             {
                 int a = Convert.ToInt32(numericUpDown1.Value);
                 this.agregar_elemento(comboBox1.Text, a);
+                this.ActualizarGrid();
             }
         }
 
@@ -74,6 +77,7 @@ namespace Control_de_inventario.Forms
             if (!(string.IsNullOrEmpty(comboBox1.Text)))
             {
                 this.eliminar_elemento(comboBox1.Text);
+                this.ActualizarGrid();
             }
         }
 
@@ -92,6 +96,7 @@ namespace Control_de_inventario.Forms
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 this.eliminar_elemento(textBox1.Text);
+                this.ActualizarGrid();
             }
         }
 
@@ -101,6 +106,7 @@ namespace Control_de_inventario.Forms
             {
                 int a = Convert.ToInt32(numericUpDown1.Value);
                 this.agregar_elemento(textBox1.Text, a);
+                this.ActualizarGrid();
             }
         }
 
@@ -115,6 +121,16 @@ namespace Control_de_inventario.Forms
             {
                 dataGridView1.Rows.Add(i, j);
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

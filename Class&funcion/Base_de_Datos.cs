@@ -11,7 +11,7 @@ namespace Control_de_inventario.Class_funcion
     internal class Base_de_Datos
     {
         private string _conexion;
-        public Base_de_Datos() { _conexion = @"Data Source=C:\Users\emiza\OneDrive\Documentos\Proyecto ASOEM\BaseProductos.db;Version=3;"; }
+        public Base_de_Datos() { _conexion = @"Data Source=C:\Users\emiza\OneDrive\Escritorio\Control de inventario\ncs\BaseProductos.db;Version=3;"; }
         public SQLiteConnection AbrirConexion()
         {
             var conexion = new SQLiteConnection(_conexion);

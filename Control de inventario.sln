@@ -13,12 +13,12 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|Any CPU.Build.0 = Debug|x64
+		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|x64.ActiveCfg = Debug|x64
 		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Debug|x64.Build.0 = Debug|x64
-		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|Any CPU.ActiveCfg = Release|x64
-		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|Any CPU.Build.0 = Release|x64
+		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|x64.ActiveCfg = Release|x64
 		{BC5D739E-54A3-45EA-9DFF-B52DBF4D7820}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection

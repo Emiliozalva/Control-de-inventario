@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using System.Diagnostics;
 
 namespace Control_de_inventario.Forms
 {
@@ -42,42 +44,56 @@ namespace Control_de_inventario.Forms
         }
         private void agregar_elemento(string p, int c)
         {
-            if (!(lista.Count >= 9))
+            if (lista.Count() < 10)
             {
                 lista.Add((p, c));
+                this.ActualizarGrid();
+                Console.WriteLine("Se agrego correctamente.");
             }
-            else { MessageBox.Show("Se alcanzo el maximo de productos."); }
+            else { MessageBox.Show("No se pueden agregar mas elementos."); }
+            
         }
         private void eliminar_elemento(string p)
-        {   if (!lista.Any())
+        {
+            if (!lista.Any())
             {
-                bool a = false;
-                foreach ((string i, int j) in lista)
+                MessageBox.Show("La lista está vacía.");
+                return;
+            }
+            bool encontrado = false;
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Item1 == p)
                 {
-                    if (i == p) { lista.Remove((p, j));
-                        a = true; break; }
-
+                    lista.RemoveAt(i);
+                    encontrado = true;
+                    ActualizarGrid();
+                    Console.WriteLine("Se eliminó correctamente el elemento"); ///quitar en producción
+                    break;
                 }
-                if (!a) { MessageBox.Show("No se cargo el elemento."); }
-            }else { MessageBox.Show("La lista esta vacia."); }
+            }
+            if (!encontrado)
+            {
+                MessageBox.Show("No se encontró el elemento.");
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) ///Agregar existente 
         {
             if (!(string.IsNullOrEmpty(comboBox1.Text)) && (numericUpDown1.Value >0) )
             {
                 int a = Convert.ToInt32(numericUpDown1.Value);
                 this.agregar_elemento(comboBox1.Text, a);
-                this.ActualizarGrid();
+                return;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) /// eliminar existente 
         {
             if (!(string.IsNullOrEmpty(comboBox1.Text)))
             {
                 this.eliminar_elemento(comboBox1.Text);
-                this.ActualizarGrid();
+                return;
             }
         }
 
@@ -91,22 +107,22 @@ namespace Control_de_inventario.Forms
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) /// eliminar nuevo
         {
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 this.eliminar_elemento(textBox1.Text);
-                this.ActualizarGrid();
+                return;
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) /// agregar nuevo
         {
-            if (!(string.IsNullOrEmpty(textBox1.Text)) && !(numericUpDown1.Value > 0))
+            if (!(string.IsNullOrEmpty(textBox1.Text)) && (numericUpDown2.Value > 0))
             {
-                int a = Convert.ToInt32(numericUpDown1.Value);
+                int a = Convert.ToInt32(numericUpDown2.Value);
                 this.agregar_elemento(textBox1.Text, a);
-                this.ActualizarGrid();
+                return;
             }
         }
 
@@ -130,7 +146,34 @@ namespace Control_de_inventario.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (lista.Any())
+            {
+                this.generarOrden();
+                Process.Start(new ProcessStartInfo("C:\\Users\\emiza\\OneDrive\\Escritorio\\Control de inventario\\ncs\\Planilla de Elementos.xlsx") { UseShellExecute = true });
+            }
+            else { MessageBox.Show("No hay productos cargados"); }
+        }
+        private void generarOrden() 
+        {
+            using (var excel = new XLWorkbook("C:\\Users\\emiza\\OneDrive\\Escritorio\\Control de inventario\\ncs\\Planilla de Elementos.xlsx"))
+            {
+                var hoja = excel.Worksheet("Hoja1");
+                var rango1 = hoja.Range("B9:B18");
+                var rango2 = hoja.Range("F9:F18");
+                rango1.Value = string.Empty;
+                rango2.Value = string.Empty;
+                int cont = 0;
+                foreach((string i, int j) in lista)
+                {
+                    string i1 = $"B{(cont + 9).ToString()}";
+                    string i2 = $"F{(cont + 9).ToString()}";
 
+                    hoja.Cell(i1).Value = i;
+                    hoja.Cell(i2).Value = j;
+                    cont++;
+                }
+                excel.Save();
+            }
         }
     }
 }

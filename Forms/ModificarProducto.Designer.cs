@@ -111,7 +111,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Modelo pruducto: ";
+            this.label4.Text = "Modelo producto: ";
             // 
             // label5
             // 

@@ -85,5 +85,48 @@ namespace Control_de_inventario.Class_funcion
             }
             return false;
         }
+        public static string FormatearFecha(int fechaEntero)
+        {
+            // Si la fecha es 0 o negativa, devolvemos vacío
+            if (fechaEntero <= 0) return "";
+
+            string fechaStr = fechaEntero.ToString();
+
+            // Debe tener 7 u 8 caracteres (YYYYMDD o YYYYMMDD)
+            if (fechaStr.Length < 7 || fechaStr.Length > 8)
+                return ""; // o "Fecha inválida"
+
+            try
+            {
+                // Extraer año
+                int anio = int.Parse(fechaStr.Substring(0, 4));
+
+                // Lo que sobra es mes+día
+                string resto = fechaStr.Substring(4);
+
+                int mes, dia;
+
+                if (resto.Length == 3)
+                {
+                    mes = int.Parse(resto.Substring(0, 1));
+                    dia = int.Parse(resto.Substring(1, 2));
+                }
+                else // 4 dígitos
+                {
+                    mes = int.Parse(resto.Substring(0, 2));
+                    dia = int.Parse(resto.Substring(2, 2));
+                }
+
+                // Validamos que sea una fecha real
+                DateTime fecha = new DateTime(anio, mes, dia);
+
+                return fecha.ToString("d/M/yyyy");
+            }
+            catch
+            {
+                // Si algo falla, devolvemos vacío para no romper el DataGrid
+                return "";
+            }
+        }
     }
 }

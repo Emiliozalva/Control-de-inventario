@@ -51,8 +51,8 @@ namespace Control_de_inventario.Forms
                     Area = p.getArea(),
                     Persona = p.getNameEm(),
                     Descripcion = p.getDesc(),
-                    FechaAlta = p.getDate1(),
-                    FechaBaja = p.getDate2()
+                    FechaAlta = Helper.FormatearFecha(p.getDate1()),
+                    FechaBaja = Helper.FormatearFecha(p.getDate2())
                 };
             }).ToList();
 
